@@ -20,11 +20,16 @@ def main
   word = Word.new
   ui = UI.new(word)
   lives = 8
-  bad_letters = %w[a b]
+  bad_letters = []
 
   loop do
     ui.print_res(lives, bad_letters)
     letter = get_letter
+    unless word.submit(letter)
+      bad_letters.push(letter)
+      lives -= 1
+    end
+    break if word.finished(lives)
   end
 end
 
@@ -32,16 +37,8 @@ end
 main
 
 =begin
-  2) Next we need to design the main loop
-    - Start with init the word class
-    - Init the UI class with the word class
-    - Then enter an infinite loop prompting the user for a letter and validating and sanitizing input
-    - It then will query the word class for validity which then the word class responds by true or false
-    - If false the letter is put into a bad letter list and a life is lost (8 lives)
-    - If true the word class updates itself
-  3) Keep going until out of lives or we get the word
-
 Test
   - Make sure we can detect a correct or incorrect letter
   - Make sure that the skeleton is mapped
+  - Make sure the game finishes smooth
 =end

@@ -15,11 +15,6 @@ class Word
     @word.length.times { @word_skeleton += '_' }
   end
 
-  def apply(letter)
-    indices = @word.each_with_index.reduce([]) { |arr, l, i| arr.push(i) if l == letter }
-    indices.each { |i| @word_skeleton[i] = letter }
-  end
-
   def submit(letter)
     unless @word.include?(letter)
       puts 'Bad Guess :*('
@@ -29,5 +24,26 @@ class Word
     puts 'Correct Guess :)'
     self.apply(letter)
     true
+  end
+
+  def finished(lives)
+    if lives.zero?
+      puts 'You died X*('
+      return true
+    elsif !@word_skeleton.include?('_')
+      puts "You got it!\n~~~#{@word}~~~"
+      return true
+    end
+    false
+  end
+
+  private
+
+  def apply(letter)
+    indices = @word.chars.each_with_index.reduce([]) do |arr, (l, i)|
+      arr.push(i) if l == letter
+      arr
+    end
+    indices.each { |i| @word_skeleton[i] = letter }
   end
 end
