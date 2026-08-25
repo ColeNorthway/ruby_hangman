@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# The word class handles...
+#   - Validating submissions
+#   - Making the outline of the word
 class Word
   attr_reader :word_skeleton
 
