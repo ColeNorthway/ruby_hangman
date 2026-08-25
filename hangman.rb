@@ -42,7 +42,6 @@ main
   3) Keep going until out of lives or we get the word
 
 Test
-  - The UI printing
-  - The sanitization/normalization of input
-  -
+  - Make sure we can detect a correct or incorrect letter
+  - Make sure that the skeleton is mapped
 =end

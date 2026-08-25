@@ -16,7 +16,8 @@ class Word
   end
 
   def apply(letter)
-    @word_skeleton.each_with_index.map! { |l| @word.index }
+    indices = @word.each_with_index.reduce([]) { |arr, l, i| arr.push(i) if l == letter }
+    indices.each { |i| @word_skeleton[i] = letter }
   end
 
   def submit(letter)
@@ -26,6 +27,7 @@ class Word
     end
 
     puts 'Correct Guess :)'
+    self.apply(letter)
     true
   end
 end
