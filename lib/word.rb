@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Word
+  attr_reader :word_skeleton
+
   def initialize
     words = File.readlines('../data/10000_words.txt', chomp: true)
     @word = ''
@@ -9,5 +11,4 @@ class Word
     end
     @word.length.times { @word_skeleton += '_' }
   end
-
 end

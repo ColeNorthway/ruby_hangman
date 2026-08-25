@@ -1,11 +1,10 @@
 # frozen_string_literal: true
+require_relative 'lib/word'
+require_relative 'lib/ui'
 
 
 =begin
-  1) First we need to create our word class
-    - Initializes from the data directory wordlist (5-12 char long)
   2) Next we need to create our UI class
-    - It will have a reference to the word class
     - Uses the word class to get the word outline (letters guessed and underscores)
     - Then it will print the lives you have left (tracked in main loop)
     - It also prints the letters already guessed
