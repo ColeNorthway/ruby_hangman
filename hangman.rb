@@ -2,14 +2,34 @@
 require_relative 'lib/word'
 require_relative 'lib/ui'
 
+ALPHABET = %w[a b c d e f g h i j k l m n o p q r s t u v w z y x].freeze
+
+def get_letter
+  loop do
+    print 'Enter a letter: '
+    letter = gets.chomp.strip.downcase
+    unless ALPHABET.include?(letter)
+      puts 'Error: Invalid Input'
+      next
+    end
+    return letter
+  end
+end
+
 def main
   word = Word.new
   ui = UI.new(word)
+  lives = 8
+  bad_letters = %w[a b]
 
   loop do
-    print
+    ui.print_res(lives, bad_letters)
+    letter = get_letter
   end
 end
+
+# ENTRY
+main
 
 =begin
   2) Next we need to design the main loop
@@ -22,8 +42,6 @@ end
   3) Keep going until out of lives or we get the word
 
 Test
-  - The word picked
-  - The skeleton
   - The UI printing
   - The sanitization/normalization of input
   -
