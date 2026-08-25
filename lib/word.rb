@@ -26,9 +26,9 @@ class Word
     true
   end
 
-  def finished(lives)
+  def finished?(lives)
     if lives.zero?
-      puts 'You died X*('
+      puts "You died X*(\n---#{@word}---"
       return true
     elsif !@word_skeleton.include?('_')
       puts "You got it!\n~~~#{@word}~~~"
