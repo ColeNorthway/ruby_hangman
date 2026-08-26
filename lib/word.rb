@@ -4,15 +4,19 @@
 #   - Validating submissions
 #   - Making the outline of the word
 class Word
-  attr_reader :word_skeleton
+  attr_reader :word_skeleton, :word
 
-  def initialize
-    words = File.readlines("#{File.dirname(__FILE__)}/../data/10000_words.txt", chomp: true)
-    @word = ''
-    @word_skeleton = ''
-    until (@word = words.sample(1)[0].downcase).length.between?(5, 12)
+  def initialize(word = '', word_skeleton = '')
+    @word = word
+    @word_skeleton = word_skeleton
+
+    if word.empty? && word_skeleton.empty?
+      words = File.readlines("#{File.dirname(__FILE__)}/../data/10000_words.txt", chomp: true)
+
+      until (@word = words.sample(1)[0].downcase).length.between?(5, 12)
+      end
+      @word.length.times { @word_skeleton += '_' }
     end
-    @word.length.times { @word_skeleton += '_' }
   end
 
   def submit(letter)
